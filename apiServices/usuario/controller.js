@@ -1,5 +1,5 @@
-import graphqlHTTP from 'express-graphql';
-import schema, { graphql } from "./schema";
+
+import schema, { graphql } from "./userSchema";
 
 const getUsuario = async (req, res) => {
   try {
@@ -11,11 +11,13 @@ const getUsuario = async (req, res) => {
   }
 };
 const graphqlGetUser =  async (req, res)=>{
-  let query = `{ hello, person { name }, people { name, description } }`;
+  let query = `{person{age}, users { firstname, lastname } }`;
   graphql(schema, query).then(result => {
     res.json(result);
   });
 };
+
+
 
 
 module.exports = {

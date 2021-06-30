@@ -5,6 +5,6 @@ import Controller from './controller';
 const route=routers();
 
 route.get('/',Controller.getUsuario);
-route.get('/graphql',Controller.graphqlGetUser);
+route.get('/graphqlUser',Controller.graphqlGetUser);
 
 export default route;
