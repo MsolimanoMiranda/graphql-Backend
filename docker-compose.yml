@@ -1,0 +1,31 @@
+version: '2'
+services:
+  node:
+    image: node
+    build: .
+    command: npm run build
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    environment:
+        - MONGO_INITDB_DATABASE=graphql
+        - MONGO_INITDB_ROOT_USERNAME=graphqluser
+        - MONGO_INITDB_ROOT_PASSWORD=graphqlpass
+    volumes:
+         - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+         - ./mongo-volume:/data/db
+    ports:
+         - 27017-27019:27017-27019
+
+
+
+
+
+
